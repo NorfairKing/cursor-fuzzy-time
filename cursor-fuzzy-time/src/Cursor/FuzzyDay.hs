@@ -13,11 +13,8 @@ import GHC.Generics (Generic)
 import Data.Text (Text)
 import Data.Time
 import Data.Validity
-import Data.Validity.Time
 
 import Text.Megaparsec
-import Text.Megaparsec.Char as Char
-import Text.Megaparsec.Char.Lexer as Lexer
 
 import Lens.Micro
 
@@ -44,7 +41,6 @@ fuzzyDayCursorGuess :: Day -> FuzzyDayCursor -> Maybe Day
 fuzzyDayCursorGuess d FuzzyDayCursor {..} = do
     fd <- parseFuzzyDay $ rebuildTextCursor fuzzyDayCursorTextCursor
     pure $ resolveDay d fd
-
 
 parseFuzzyDay :: Text -> Maybe FuzzyDay
 parseFuzzyDay = parseMaybe fuzzyDayP

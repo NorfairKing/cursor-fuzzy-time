@@ -7,13 +7,8 @@ module Cursor.FuzzyTime.Demo
 import Data.Maybe
 
 import Data.Function
-import qualified Data.Text as T
 import Data.Text (Text)
-import qualified Data.Text.IO as T
 import Data.Time
-import System.Directory
-import System.Environment
-import System.Exit
 
 import Lens.Micro
 
@@ -23,10 +18,8 @@ import Cursor.FuzzyDay
 import Cursor.Text
 
 import Brick as Brick
-import Brick.Main as Brick
 import Brick.Widgets.Border as Brick
 import Brick.Widgets.Center as Brick
-import Brick.Widgets.Core as Brick
 
 import Graphics.Vty.Attributes as Vty
 import Graphics.Vty.Input.Events as Vty
@@ -59,7 +52,8 @@ draw (today, fdc) =
                 case rebuildTextCursor tc of
                     "" -> " "
                     t -> t
-              , hCenter $ case fuzzyDayCursorGuess today fdc of
+              , hCenter $
+                case fuzzyDayCursorGuess today fdc of
                     Nothing -> txt " "
                     Just d -> str $ show d
               ]
@@ -74,7 +68,7 @@ handleEvent (d, fdc) e = do
         case e of
             VtyEvent ve ->
                 case ve of
-                    EvKey key mods ->
+                    EvKey key _ ->
                         let pDo :: (TextCursor -> TextCursor)
                                 -> EventM Text (Next FuzzyDayCursor)
                             pDo func =
