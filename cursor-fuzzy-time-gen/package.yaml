@@ -15,13 +15,14 @@ library:
   - base >=4.9 && <=5
   - containers
   - cursor-fuzzy-time
+  - cursor-gen
   - genvalidity
   - genvalidity-time
   - megaparsec
   - time
 
 tests:
-  fuzzy-time-test:
+  cursor-fuzzy-time-test:
     main: Spec.hs
     source-dirs: test/
     ghc-options:
@@ -36,6 +37,7 @@ tests:
     - cursor-fuzzy-time-gen
     - genvalidity
     - genvalidity-hspec
+    - genvalidity-hspec-optics
     - genvalidity-time
     - hspec
     - megaparsec

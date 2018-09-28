@@ -1,3 +1,0 @@
-module Cursor.FuzzyTime
-    (
-    ) where
