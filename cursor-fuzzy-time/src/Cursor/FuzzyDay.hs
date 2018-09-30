@@ -4,13 +4,16 @@
 module Cursor.FuzzyDay
     ( FuzzyDayCursor(..)
     , emptyFuzzyDayCursor
+    , makeFuzzyDayCursor
+    , rebuildFuzzyDayCursor
     , fuzzyDayCursorTextCursorL
     , fuzzyDayCursorGuess
     ) where
 
 import GHC.Generics (Generic)
 
-import Data.Text (Text)
+import Data.Maybe
+import qualified Data.Text as T
 import Data.Time
 import Data.Validity
 
@@ -22,25 +25,37 @@ import Data.FuzzyTime
 
 import Cursor.Text
 
-newtype FuzzyDayCursor = FuzzyDayCursor
+data FuzzyDayCursor = FuzzyDayCursor
     { fuzzyDayCursorTextCursor :: TextCursor
+    , fuzzyDayCursorBaseDay :: Day
     } deriving (Show, Eq, Generic)
 
 instance Validity FuzzyDayCursor
 
-emptyFuzzyDayCursor :: FuzzyDayCursor
-emptyFuzzyDayCursor =
-    FuzzyDayCursor {fuzzyDayCursorTextCursor = emptyTextCursor}
+emptyFuzzyDayCursor :: Day -> FuzzyDayCursor
+emptyFuzzyDayCursor d =
+    FuzzyDayCursor
+        {fuzzyDayCursorTextCursor = emptyTextCursor, fuzzyDayCursorBaseDay = d}
+
+makeFuzzyDayCursor :: Day -> FuzzyDayCursor
+makeFuzzyDayCursor d =
+    FuzzyDayCursor
+        { fuzzyDayCursorTextCursor =
+              fromJust $
+              makeTextCursor $ T.pack $ formatTime defaultTimeLocale "%F" d
+        , fuzzyDayCursorBaseDay = d
+        }
+
+rebuildFuzzyDayCursor :: FuzzyDayCursor -> Day
+rebuildFuzzyDayCursor fdc@FuzzyDayCursor {..} =
+    fromMaybe fuzzyDayCursorBaseDay $ fuzzyDayCursorGuess fdc
 
 fuzzyDayCursorTextCursorL :: Lens' FuzzyDayCursor TextCursor
 fuzzyDayCursorTextCursorL =
     lens fuzzyDayCursorTextCursor $ \fdc tc ->
         fdc {fuzzyDayCursorTextCursor = tc}
 
-fuzzyDayCursorGuess :: Day -> FuzzyDayCursor -> Maybe Day
-fuzzyDayCursorGuess d FuzzyDayCursor {..} = do
-    fd <- parseFuzzyDay $ rebuildTextCursor fuzzyDayCursorTextCursor
-    pure $ resolveDay d fd
-
-parseFuzzyDay :: Text -> Maybe FuzzyDay
-parseFuzzyDay = parseMaybe fuzzyDayP
+fuzzyDayCursorGuess :: FuzzyDayCursor -> Maybe Day
+fuzzyDayCursorGuess FuzzyDayCursor {..} = do
+    fd <- parseMaybe fuzzyDayP $ rebuildTextCursor fuzzyDayCursorTextCursor
+    pure $ resolveDay fuzzyDayCursorBaseDay fd

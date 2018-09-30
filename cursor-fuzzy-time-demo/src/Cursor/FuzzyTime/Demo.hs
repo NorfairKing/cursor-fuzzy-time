@@ -27,9 +27,9 @@ import Graphics.Vty.Input.Events as Vty
 demo :: IO ()
 demo = do
     today <- getCurrentDay
-    void $ Brick.defaultMain picoSmosApp (today, emptyFuzzyDayCursor)
+    void $ Brick.defaultMain picoSmosApp $ emptyFuzzyDayCursor today
 
-picoSmosApp :: App (Day, FuzzyDayCursor) e Text
+picoSmosApp :: App FuzzyDayCursor e Text
 picoSmosApp =
     App
         { appDraw = draw
@@ -39,8 +39,8 @@ picoSmosApp =
         , appAttrMap = const $ attrMap Vty.defAttr []
         }
 
-draw :: (Day, FuzzyDayCursor) -> [Widget Text]
-draw (today, fdc) =
+draw :: FuzzyDayCursor -> [Widget Text]
+draw fdc =
     let tc = fuzzyDayCursorTextCursor fdc
      in [ centerLayer $
           border $
@@ -53,48 +53,41 @@ draw (today, fdc) =
                     "" -> " "
                     t -> t
               , hCenter $
-                case fuzzyDayCursorGuess today fdc of
+                case fuzzyDayCursorGuess fdc of
                     Nothing -> txt " "
                     Just d -> str $ show d
               ]
         ]
 
 handleEvent ::
-       (Day, FuzzyDayCursor)
-    -> BrickEvent Text e
-    -> EventM Text (Next (Day, FuzzyDayCursor))
-handleEvent (d, fdc) e = do
-    fdc' <-
-        case e of
-            VtyEvent ve ->
-                case ve of
-                    EvKey key _ ->
-                        let pDo :: (TextCursor -> TextCursor)
-                                -> EventM Text (Next FuzzyDayCursor)
-                            pDo func =
-                                continue
-                                    (fdc & fuzzyDayCursorTextCursorL %~ func)
-                            mDo :: (TextCursor -> Maybe TextCursor)
-                                -> EventM Text (Next FuzzyDayCursor)
-                            mDo func =
-                                continue $
-                                fromMaybe
-                                    fdc
-                                    (fdc & fuzzyDayCursorTextCursorL func)
-                         in case key of
-                                KChar c -> mDo $ textCursorInsert c
-                                KLeft -> mDo textCursorSelectPrev
-                                KRight -> mDo textCursorSelectNext
-                                KBS -> mDo textCursorRemove
-                                KHome -> pDo textCursorSelectStart
-                                KEnd -> pDo textCursorSelectEnd
-                                KDel -> mDo textCursorDelete
-                                KEsc -> halt fdc
-                                KEnter -> halt fdc
-                                _ -> continue fdc
-                    _ -> continue fdc
-            _ -> continue fdc
-    pure $ (,) d <$> fdc'
+       FuzzyDayCursor -> BrickEvent Text e -> EventM Text (Next FuzzyDayCursor)
+handleEvent fdc e = do
+    case e of
+        VtyEvent ve ->
+            case ve of
+                EvKey key _ ->
+                    let pDo :: (TextCursor -> TextCursor)
+                            -> EventM Text (Next FuzzyDayCursor)
+                        pDo func =
+                            continue (fdc & fuzzyDayCursorTextCursorL %~ func)
+                        mDo :: (TextCursor -> Maybe TextCursor)
+                            -> EventM Text (Next FuzzyDayCursor)
+                        mDo func =
+                            continue $
+                            fromMaybe fdc (fdc & fuzzyDayCursorTextCursorL func)
+                     in case key of
+                            KChar c -> mDo $ textCursorInsert c
+                            KLeft -> mDo textCursorSelectPrev
+                            KRight -> mDo textCursorSelectNext
+                            KBS -> mDo textCursorRemove
+                            KHome -> pDo textCursorSelectStart
+                            KEnd -> pDo textCursorSelectEnd
+                            KDel -> mDo textCursorDelete
+                            KEsc -> halt fdc
+                            KEnter -> halt fdc
+                            _ -> continue fdc
+                _ -> continue fdc
+        _ -> continue fdc
 
 getCurrentDay :: IO Day
 getCurrentDay = utctDay <$> getCurrentTime
