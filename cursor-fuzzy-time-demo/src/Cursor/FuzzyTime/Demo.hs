@@ -16,6 +16,7 @@ import Control.Monad
 
 import Cursor.FuzzyDay
 import Cursor.Text
+import Cursor.Types
 
 import Brick as Brick
 import Brick.Widgets.Border as Brick
@@ -75,14 +76,18 @@ handleEvent fdc e = do
                         mDo func =
                             continue $
                             fromMaybe fdc (fdc & fuzzyDayCursorTextCursorL func)
+                        mDDo ::
+                               (TextCursor -> Maybe (DeleteOrUpdate TextCursor))
+                            -> EventM Text (Next FuzzyDayCursor)
+                        mDDo f = mDo ( dullMDelete . f)
                      in case key of
                             KChar c -> mDo $ textCursorInsert c
                             KLeft -> mDo textCursorSelectPrev
                             KRight -> mDo textCursorSelectNext
-                            KBS -> mDo textCursorRemove
                             KHome -> pDo textCursorSelectStart
                             KEnd -> pDo textCursorSelectEnd
-                            KDel -> mDo textCursorDelete
+                            KBS -> mDDo textCursorRemove
+                            KDel -> mDDo textCursorDelete
                             KEsc -> halt fdc
                             KEnter -> halt fdc
                             _ -> continue fdc
