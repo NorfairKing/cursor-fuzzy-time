@@ -8,7 +8,6 @@ module Cursor.FuzzyTime.Demo
 import Data.Maybe
 
 import Data.Function
-import Data.Text (Text)
 import Data.Time
 
 import Lens.Micro
@@ -166,6 +165,3 @@ handleEvent s@State {..} e = do
                 _ -> continue s
         _ -> continue s
     _ -> continue s
-
-getCurrentDay :: IO Day
-getCurrentDay = utctDay <$> getCurrentTime
