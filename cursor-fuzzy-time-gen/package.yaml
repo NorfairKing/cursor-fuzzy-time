@@ -35,6 +35,7 @@ tests:
     - base
     - cursor-fuzzy-time
     - cursor-fuzzy-time-gen
+    - fuzzy-time
     - genvalidity
     - genvalidity-hspec
     - genvalidity-hspec-optics

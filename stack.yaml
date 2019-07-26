@@ -5,7 +5,7 @@ packages:
 - cursor-fuzzy-time-demo
 extra-deps:
 - git: https://github.com/NorfairKing/fuzzy-time.git
-  commit: 4e388ab8f0bf9f1e8c64f39e98da6867c383dc3c
+  commit: 438fe564eb834657598f5a3fba6b699db8098188
   subdirs:
   - fuzzy-time
   - fuzzy-time-gen
