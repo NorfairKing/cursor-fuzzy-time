@@ -14,12 +14,12 @@ packages:
     git: https://github.com/NorfairKing/fuzzy-time.git
     pantry-tree:
       size: 415
-      sha256: b56675410266164e36cc90a565ba025dd4dd7a389a3ffdb7c202e3a040e2bd5b
-    commit: a0ed9ae78371d41034c6eb670f8f80a3c2f6c1b9
+      sha256: df8ab800792ec9e012c68f8235c0d3835ec6e49ed337b97640475bc7c79babd2
+    commit: e496ad8924cebea70dd81f85325e92a6a658475d
   original:
     subdir: fuzzy-time
     git: https://github.com/NorfairKing/fuzzy-time.git
-    commit: a0ed9ae78371d41034c6eb670f8f80a3c2f6c1b9
+    commit: e496ad8924cebea70dd81f85325e92a6a658475d
 - completed:
     subdir: fuzzy-time-gen
     cabal-file:
@@ -29,13 +29,13 @@ packages:
     version: 0.0.0.0
     git: https://github.com/NorfairKing/fuzzy-time.git
     pantry-tree:
-      size: 492
-      sha256: a63e65579f8d37d3bd85910de38aef76b29f3ac68062b88d69cd13eadd3d309a
-    commit: a0ed9ae78371d41034c6eb670f8f80a3c2f6c1b9
+      size: 493
+      sha256: dc6dea4284c0b39f2c314b17b1f0c24a7f3ca1fbf0019016202dfb4103785af9
+    commit: e496ad8924cebea70dd81f85325e92a6a658475d
   original:
     subdir: fuzzy-time-gen
     git: https://github.com/NorfairKing/fuzzy-time.git
-    commit: a0ed9ae78371d41034c6eb670f8f80a3c2f6c1b9
+    commit: e496ad8924cebea70dd81f85325e92a6a658475d
 - completed:
     subdir: cursor
     cabal-file:
@@ -79,11 +79,11 @@ packages:
     pantry-tree:
       size: 755
       sha256: 44ed24443c9d12acde92b9987f10b4d657de0fbef17aa8e44c4e2db58846bdd8
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-aeson
     cabal-file:
@@ -95,11 +95,11 @@ packages:
     pantry-tree:
       size: 393
       sha256: 3677aefb210c0e37f3a859e51aa6975b5f1e9d817b4834478538c94263704eee
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-aeson
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-bytestring
     cabal-file:
@@ -111,11 +111,11 @@ packages:
     pantry-tree:
       size: 408
       sha256: cde0d6e8e873b58c6c12e7f7c865dc5a301e33927ed6b72b437d79110e323c2b
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-bytestring
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-containers
     cabal-file:
@@ -127,11 +127,11 @@ packages:
     pantry-tree:
       size: 924
       sha256: 4cc7ef28fa41cd61be9367937d6fbcc5d1b69d3b9bb2235ebc70b05c3ebf11ad
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-containers
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-hspec
     cabal-file:
@@ -143,11 +143,11 @@ packages:
     pantry-tree:
       size: 2183
       sha256: 5d562228962967b22ee2e94600ccbf6a88419efb2c19d7f9f9015dbd99088f53
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-hspec
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-hspec-aeson
     cabal-file:
@@ -159,11 +159,11 @@ packages:
     pantry-tree:
       size: 498
       sha256: 7bd96fba6c2983763052322b1fd6eee9351092b1faa7a9a0b8c2ca9e30c81112
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-hspec-aeson
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-hspec-binary
     cabal-file:
@@ -175,11 +175,11 @@ packages:
     pantry-tree:
       size: 498
       sha256: aebd6b94455c1d9a3cdfbff23ab524079ec4ef2b332d060618dd1b1a7151ceeb
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-hspec-binary
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-hspec-cereal
     cabal-file:
@@ -191,27 +191,27 @@ packages:
     pantry-tree:
       size: 499
       sha256: 532c4096981bb35ed418ced80d62d5c2c0893e08f3d91af245d44ee4d74549d7
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-hspec-cereal
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-hspec-hashable
     cabal-file:
-      size: 2167
-      sha256: 773cc1f67555fcebbaf04362427bad0dcef8297fc339f5fc00fe0e460df74358
+      size: 2151
+      sha256: 392769ae760c50755eb299647cc39b1bd5d1fc113b392118623d153a69806911
     name: genvalidity-hspec-hashable
-    version: 0.2.0.3
+    version: 0.2.0.4
     git: https://github.com/NorfairKing/validity.git
     pantry-tree:
       size: 502
-      sha256: 909f528dfd7f844b03a77f01703ebab8159447ebd7d179e14f697a279e0b4356
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+      sha256: 05bc50736030dec8ca44c9f977f9d6b65e21a8cfdd0fce9bec16c4449b290f08
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-hspec-hashable
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-hspec-optics
     cabal-file:
@@ -223,11 +223,11 @@ packages:
     pantry-tree:
       size: 501
       sha256: a2a0afa5219357f15ebce70aeecfbc5a4c9bd5232d5d90ca2ac19a0da0eecffe
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-hspec-optics
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-path
     cabal-file:
@@ -239,11 +239,11 @@ packages:
     pantry-tree:
       size: 397
       sha256: 54168c76137432167214fc05a8f4c7d7dca6ccd316d56b091cd94c3368bc42ce
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-path
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-property
     cabal-file:
@@ -255,11 +255,11 @@ packages:
     pantry-tree:
       size: 1922
       sha256: 4508c8ebfb0dae33086ae2e95ef7f55b57a5ab37966f60e79d089e04cecdbfe9
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-property
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-scientific
     cabal-file:
@@ -271,11 +271,11 @@ packages:
     pantry-tree:
       size: 405
       sha256: 712ae09b3becc1f632d020407d882da5df9f940b9eb6facacd2f5254400f01b7
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-scientific
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-text
     cabal-file:
@@ -287,11 +287,11 @@ packages:
     pantry-tree:
       size: 395
       sha256: bf7bad85cca4b7833d83d2baeced177747d55592235bdf3f0108bd948f0d2733
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-text
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-time
     cabal-file:
@@ -303,11 +303,11 @@ packages:
     pantry-tree:
       size: 647
       sha256: 45d7af2712647fec971b3b7c81d27571331fd0250bfa15fab1692189c32767dc
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-time
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-unordered-containers
     cabal-file:
@@ -319,11 +319,11 @@ packages:
     pantry-tree:
       size: 564
       sha256: 58823e810929e8899130e5bafcf4140dd53945be6e46184e5860cb37b6c598cf
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-unordered-containers
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-uuid
     cabal-file:
@@ -335,11 +335,11 @@ packages:
     pantry-tree:
       size: 341
       sha256: 3fe8bc6b82967d22c43855b064d81b430b6291c5e2954c9c23146c6a40a9a8c1
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-uuid
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: genvalidity-vector
     cabal-file:
@@ -351,11 +351,11 @@ packages:
     pantry-tree:
       size: 395
       sha256: 999df146a027c18a8f2e6c4096c26a1c9e8fde7bffbce37dc0f0e82e8d044595
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: genvalidity-vector
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity
     cabal-file:
@@ -367,11 +367,11 @@ packages:
     pantry-tree:
       size: 449
       sha256: ba9ebbdef0004c57ffe4936ad704bcd174dda70577146c2f2b37385803872f9b
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-aeson
     cabal-file:
@@ -383,11 +383,11 @@ packages:
     pantry-tree:
       size: 215
       sha256: 6a19400ec07079c7707ff6f92363f201fd150776708b49b2a56fe57939a2b9e1
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-aeson
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-bytestring
     cabal-file:
@@ -399,11 +399,11 @@ packages:
     pantry-tree:
       size: 273
       sha256: 1b9767751ce37a271398a6470729baf653b47e84e7d929113c381333fded39ff
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-bytestring
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-containers
     cabal-file:
@@ -415,11 +415,11 @@ packages:
     pantry-tree:
       size: 482
       sha256: 5f6aae7483b458c8c98fa986ae3d63c6594979549e55ee2e07b06570ef733d6b
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-containers
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-path
     cabal-file:
@@ -431,11 +431,11 @@ packages:
     pantry-tree:
       size: 337
       sha256: db3b45fdf2270efc9398eaade08b59cf46414be792acee7a1cbb23caeecb07fd
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-path
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-primitive
     cabal-file:
@@ -447,11 +447,11 @@ packages:
     pantry-tree:
       size: 219
       sha256: 788a0685a7c29fe1e29dd104d12cdec260984448cb4884d88f614152f86a617d
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-primitive
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-scientific
     cabal-file:
@@ -463,11 +463,11 @@ packages:
     pantry-tree:
       size: 220
       sha256: 9bd610f4eb2b23ff98f21ebd18f7144d1b9aa7f8f3850b92b0c2cf7cfb393c6b
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-scientific
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-text
     cabal-file:
@@ -479,11 +479,11 @@ packages:
     pantry-tree:
       size: 267
       sha256: d518cda143cbce68ca12fd0b316c63c9c1af7b927f7410d876d6989133a4e173
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-text
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-time
     cabal-file:
@@ -495,11 +495,11 @@ packages:
     pantry-tree:
       size: 508
       sha256: 922ee1d731b2b32b33c664899013fb9f4f1a9d6c9ecf139e210a489abde7b315
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-time
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-unordered-containers
     cabal-file:
@@ -511,11 +511,11 @@ packages:
     pantry-tree:
       size: 365
       sha256: bb587db1f36a689d01c77ef51238666613e5b4151b85a7f94d0c080d8c3a6ae3
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-unordered-containers
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-uuid
     cabal-file:
@@ -527,11 +527,11 @@ packages:
     pantry-tree:
       size: 214
       sha256: dfb2c88e3e57bcbc7965f6b76fd07bc2b2e23a773405373cc64668e45bd6dc93
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-uuid
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 - completed:
     subdir: validity-vector
     cabal-file:
@@ -543,11 +543,11 @@ packages:
     pantry-tree:
       size: 216
       sha256: 82160689c868ab8c2817f29586d43380e940f7546f33b8feef0ff71841561b5a
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
   original:
     subdir: validity-vector
     git: https://github.com/NorfairKing/validity.git
-    commit: 15c78ae1586a4c78eeb2f7ec2c3c91d2d16851d7
+    commit: 8a13a23696115845133d87118b81c47fa1f9b04b
 snapshots:
 - completed:
     size: 503674

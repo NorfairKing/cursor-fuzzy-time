@@ -8,6 +8,7 @@ module Cursor.FuzzyTime.Demo
 import Data.Maybe
 
 import Data.Function
+import Data.FuzzyTime
 import Data.Time
 
 import Lens.Micro
@@ -35,7 +36,7 @@ demo = do
     State
       { stateDayCursor = makeFuzzyDayCursor $ localDay lt
       , stateTimeOfDayCursor = makeFuzzyTimeOfDayCursor $ localTimeOfDay lt
-      , stateLocalTimeCursor = makeFuzzyLocalTimeCursor lt
+      , stateLocalTimeCursor = makeFuzzyLocalTimeCursor $ BothTimeAndDay lt
       , stateSelection = SelectLocalTime
       }
 

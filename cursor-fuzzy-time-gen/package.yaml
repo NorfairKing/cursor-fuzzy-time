@@ -16,6 +16,8 @@ library:
   - containers
   - cursor-fuzzy-time
   - cursor-gen
+  - fuzzy-time
+  - fuzzy-time-gen
   - genvalidity
   - genvalidity-time
   - megaparsec

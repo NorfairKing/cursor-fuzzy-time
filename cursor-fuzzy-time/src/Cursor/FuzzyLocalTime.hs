@@ -39,12 +39,20 @@ emptyFuzzyLocalTimeCursor d =
   FuzzyLocalTimeCursor
     {fuzzyLocalTimeCursorTextCursor = emptyTextCursor, fuzzyLocalTimeCursorBaseLocalTime = d}
 
-makeFuzzyLocalTimeCursor :: LocalTime -> FuzzyLocalTimeCursor
-makeFuzzyLocalTimeCursor d =
+makeFuzzyLocalTimeCursor :: AmbiguousLocalTime -> FuzzyLocalTimeCursor
+makeFuzzyLocalTimeCursor alt =
   FuzzyLocalTimeCursor
     { fuzzyLocalTimeCursorTextCursor =
-        fromJust $ makeTextCursor $ T.pack $ formatTime defaultTimeLocale "%F %T%Q" d
-    , fuzzyLocalTimeCursorBaseLocalTime = d
+        fromJust $
+        makeTextCursor $
+        T.pack $
+        case alt of
+          OnlyDaySpecified d -> formatTime defaultTimeLocale "%F" d
+          BothTimeAndDay lt -> formatTime defaultTimeLocale "%F %T%Q" lt
+    , fuzzyLocalTimeCursorBaseLocalTime =
+        case alt of
+          OnlyDaySpecified d -> LocalTime d midnight
+          BothTimeAndDay lt -> lt
     }
 
 rebuildFuzzyLocalTimeCursor :: FuzzyLocalTimeCursor -> AmbiguousLocalTime

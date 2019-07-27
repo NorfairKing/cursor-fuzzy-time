@@ -6,8 +6,6 @@ import Test.Hspec
 import Test.Validity
 import Test.Validity.Optics
 
-import Data.FuzzyTime
-
 import Cursor.FuzzyLocalTime
 import Cursor.FuzzyLocalTime.Gen ()
 
@@ -23,8 +21,7 @@ spec = do
   describe "makeFuzzyLocalTimeCursor" $ do
     it "produces valid cursors" $ producesValidsOnValids makeFuzzyLocalTimeCursor
     it "makes cursors that makes the guessing produce the given time" $
-      forAllValid $ \d ->
-        fuzzyLocalTimeCursorGuess (makeFuzzyLocalTimeCursor d) `shouldBe` Just (BothTimeAndDay d)
+      forAllValid $ \d -> fuzzyLocalTimeCursorGuess (makeFuzzyLocalTimeCursor d) `shouldBe` Just d
   describe "rebuildFuzzyLocalTimeCursor" $ do
     it "produces valid time of day" $ producesValidsOnValids rebuildFuzzyLocalTimeCursor
   describe "fuzzyLocalTimeCursorTextCursorL" $ lensSpecOnValid fuzzyLocalTimeCursorTextCursorL

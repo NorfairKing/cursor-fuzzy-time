@@ -17,6 +17,7 @@ library:
   - cursor
   - cursor-fuzzy-time
   - directory
+  - fuzzy-time
   - microlens
   - text
   - time

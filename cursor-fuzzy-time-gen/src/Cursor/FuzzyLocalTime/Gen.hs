@@ -2,6 +2,7 @@
 
 module Cursor.FuzzyLocalTime.Gen where
 
+import Data.FuzzyTime.Types.Gen ()
 import Data.GenValidity
 import Data.GenValidity.Time ()
 
