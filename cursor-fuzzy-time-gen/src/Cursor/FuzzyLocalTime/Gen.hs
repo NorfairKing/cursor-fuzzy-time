@@ -12,4 +12,6 @@ import Cursor.FuzzyLocalTime
 
 instance GenUnchecked FuzzyLocalTimeCursor
 
-instance GenValid FuzzyLocalTimeCursor
+instance GenValid FuzzyLocalTimeCursor where
+  genValid = genValidStructurallyWithoutExtraChecking
+  shrinkValid = shrinkValidStructurallyWithoutExtraFiltering

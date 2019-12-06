@@ -17,6 +17,8 @@ import qualified Data.Text as T
 import Data.Time
 import Data.Validity
 
+import Control.DeepSeq
+
 import Text.Megaparsec
 
 import Lens.Micro
@@ -33,6 +35,8 @@ data FuzzyTimeOfDayCursor =
   deriving (Show, Eq, Generic)
 
 instance Validity FuzzyTimeOfDayCursor
+
+instance NFData FuzzyTimeOfDayCursor
 
 emptyFuzzyTimeOfDayCursor :: TimeOfDay -> FuzzyTimeOfDayCursor
 emptyFuzzyTimeOfDayCursor d =

@@ -14,6 +14,7 @@ import GHC.Generics (Generic)
 
 import Data.Maybe
 import qualified Data.Text as T
+import Control.DeepSeq
 import Data.Time
 import Data.Validity
 
@@ -31,6 +32,7 @@ data FuzzyDayCursor = FuzzyDayCursor
     } deriving (Show, Eq, Generic)
 
 instance Validity FuzzyDayCursor
+instance NFData FuzzyDayCursor
 
 emptyFuzzyDayCursor :: Day -> FuzzyDayCursor
 emptyFuzzyDayCursor d =

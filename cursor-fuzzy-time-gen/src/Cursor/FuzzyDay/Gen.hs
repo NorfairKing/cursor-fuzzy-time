@@ -11,4 +11,6 @@ import Cursor.FuzzyDay
 
 instance GenUnchecked FuzzyDayCursor
 
-instance GenValid FuzzyDayCursor
+instance GenValid FuzzyDayCursor where
+  genValid = genValidStructurallyWithoutExtraChecking
+  shrinkValid = shrinkValidStructurallyWithoutExtraFiltering

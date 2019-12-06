@@ -15,6 +15,7 @@ library:
   - base >=4.9 && <=5
   - containers
   - cursor
+  - deepseq
   - fuzzy-time
   - megaparsec
   - microlens

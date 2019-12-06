@@ -17,6 +17,8 @@ import qualified Data.Text as T
 import Data.Time
 import Data.Validity
 
+import Control.DeepSeq
+
 import Text.Megaparsec
 
 import Lens.Micro
@@ -33,6 +35,8 @@ data FuzzyLocalTimeCursor =
   deriving (Show, Eq, Generic)
 
 instance Validity FuzzyLocalTimeCursor
+
+instance NFData FuzzyLocalTimeCursor
 
 emptyFuzzyLocalTimeCursor :: LocalTime -> FuzzyLocalTimeCursor
 emptyFuzzyLocalTimeCursor d =

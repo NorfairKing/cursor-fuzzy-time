@@ -11,4 +11,6 @@ import Cursor.FuzzyTimeOfDay
 
 instance GenUnchecked FuzzyTimeOfDayCursor
 
-instance GenValid FuzzyTimeOfDayCursor
+instance GenValid FuzzyTimeOfDayCursor where
+  genValid = genValidStructurallyWithoutExtraChecking
+  shrinkValid = shrinkValidStructurallyWithoutExtraFiltering

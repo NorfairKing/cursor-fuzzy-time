@@ -14,6 +14,12 @@ let
     + "/nix/overlay.nix")
   );
 in pkgsv {
-  overlays = [ validity-overlay cursor-overlay fuzzy-time-overlay (import ./nix/overlay.nix) ];
+  overlays = [
+    validity-overlay
+    cursor-overlay
+    fuzzy-time-overlay
+    ( import ./nix/gitignore-src.nix )
+    ( import ./nix/overlay.nix )
+  ];
   config.allowUnfree = true;
 }
