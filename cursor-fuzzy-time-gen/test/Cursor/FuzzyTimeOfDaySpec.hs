@@ -14,16 +14,23 @@ spec = do
   eqSpecOnValid @FuzzyTimeOfDayCursor
   genValidSpec @FuzzyTimeOfDayCursor
   describe "emptyFuzzyTimeOfDayCursor" $ do
-    it "produces valid cursors" $ producesValidsOnValids emptyFuzzyTimeOfDayCursor
+    it "produces valid cursors" $
+      producesValidsOnValids emptyFuzzyTimeOfDayCursor
     it "makes cursors that makes the guessing produce nothing" $
       forAllValid $ \today ->
-        fuzzyTimeOfDayCursorGuess (emptyFuzzyTimeOfDayCursor today) `shouldBe` Nothing
+        fuzzyTimeOfDayCursorGuess (emptyFuzzyTimeOfDayCursor today) `shouldBe`
+        Nothing
   describe "makeFuzzyTimeOfDayCursor" $ do
-    it "produces valid cursors" $ producesValidsOnValids makeFuzzyTimeOfDayCursor
+    it "produces valid cursors" $
+      producesValidsOnValids makeFuzzyTimeOfDayCursor
     it "makes cursors that makes the guessing produce the given time" $
-      forAllValid $ \d -> fuzzyTimeOfDayCursorGuess (makeFuzzyTimeOfDayCursor d) `shouldBe` Just d
+      forAllValid $ \d ->
+        fuzzyTimeOfDayCursorGuess (makeFuzzyTimeOfDayCursor d) `shouldBe` Just d
   describe "rebuildFuzzyTimeOfDayCursor" $ do
-    it "produces valid time of day" $ producesValidsOnValids rebuildFuzzyTimeOfDayCursor
-  describe "fuzzyTimeOfDayCursorTextCursorL" $ lensSpecOnValid fuzzyTimeOfDayCursorTextCursorL
+    it "produces valid time of day" $
+      producesValidsOnValids rebuildFuzzyTimeOfDayCursor
+  describe "fuzzyTimeOfDayCursorTextCursorL" $
+    lensSpecOnValid fuzzyTimeOfDayCursorTextCursorL
   describe "fuzzyTimeOfDayCursorGuess" $
-    it "guesses a valid time of day" $ producesValidsOnValids fuzzyTimeOfDayCursorGuess
+    it "guesses a valid time of day" $
+    producesValidsOnValids fuzzyTimeOfDayCursorGuess

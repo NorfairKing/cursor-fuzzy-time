@@ -4,18 +4,18 @@ packages:
 - cursor-fuzzy-time-gen
 - cursor-fuzzy-time-demo
 extra-deps:
-- git: https://github.com/NorfairKing/fuzzy-time.git
-  commit: 2122037216d64972303f6a26d8b10598c85fb14f
+- github: NorfairKing/fuzzy-time
+  commit: 040879ea5dc3ce15d946a92d6d671e27c1c205fd
   subdirs:
   - fuzzy-time
   - fuzzy-time-gen
-- git: https://github.com/NorfairKing/cursor.git
-  commit: 41d71c624c7cdac9e807c8e3679960ba91198e0b
+- github: NorfairKing/cursor
+  commit: 8d0cbe9635c741c4fb1f76ac4b6550f4c831b0cd
   subdirs:
   - cursor
   - cursor-gen
-- git: https://github.com/NorfairKing/validity.git
-  commit: c5a6efb92d96941308f55220a6f42f399acb1951
+- github: NorfairKing/validity
+  commit: 7f1d3d731062d4448aed306f4c5ddc5193f2a1e5
   subdirs:
   - genvalidity
   - genvalidity-aeson
