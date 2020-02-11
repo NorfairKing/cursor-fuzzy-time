@@ -5,7 +5,7 @@ packages:
 - cursor-fuzzy-time-demo
 extra-deps:
 - github: NorfairKing/fuzzy-time
-  commit: 040879ea5dc3ce15d946a92d6d671e27c1c205fd
+  commit: e838407dbfa6fb65786a8eca419abafa13bfdc54
   subdirs:
   - fuzzy-time
   - fuzzy-time-gen
@@ -15,7 +15,7 @@ extra-deps:
   - cursor
   - cursor-gen
 - github: NorfairKing/validity
-  commit: 7f1d3d731062d4448aed306f4c5ddc5193f2a1e5
+  commit: be40c0a0b0bf6a1d58f4a6a5c6770c4a544c4450
   subdirs:
   - genvalidity
   - genvalidity-aeson
@@ -48,3 +48,10 @@ extra-deps:
   - validity-unordered-containers
   - validity-uuid
   - validity-vector
+
+nix:
+  path: [ "nixpkgs=https://github.com/NixOS/nixpkgs/archive/e6b93257b0ba070bd12810eeacbe281396c24316.tar.gz" ]
+  add-gc-roots: true
+  packages:
+  - zlib
+
