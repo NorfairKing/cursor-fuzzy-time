@@ -2,61 +2,55 @@
 {-# LANGUAGE RecordWildCards #-}
 
 module Cursor.FuzzyTime.Demo
-  ( demo
-  ) where
+  ( demo,
+  )
+where
 
-import Data.Maybe
-
-import Data.Function
-import Data.FuzzyTime
-import Data.Time
-
-import Lens.Micro
-
+import Brick
+import Brick.Widgets.Border as Brick
+import Brick.Widgets.Center as Brick
 import Control.Monad
-
 import Cursor.FuzzyDay
 import Cursor.FuzzyLocalTime
 import Cursor.FuzzyTimeOfDay
 import Cursor.Text
 import Cursor.Types
-
-import Brick as Brick
-import Brick.Widgets.Border as Brick
-import Brick.Widgets.Center as Brick
-
+import Data.Function
+import Data.FuzzyTime
+import Data.Maybe
+import Data.Time
 import Graphics.Vty.Attributes as Vty
 import Graphics.Vty.Input.Events as Vty
+import Lens.Micro
 
 demo :: IO ()
 demo = do
   lt <- (\zt -> utcToLocalTime (zonedTimeZone zt) (zonedTimeToUTC zt)) <$> getZonedTime
   void $
     Brick.defaultMain picoSmosApp $
-    State
-      { stateDayCursor = makeFuzzyDayCursor $ localDay lt
-      , stateTimeOfDayCursor = makeFuzzyTimeOfDayCursor $ localTimeOfDay lt
-      , stateLocalTimeCursor = makeFuzzyLocalTimeCursor $ BothTimeAndDay lt
-      , stateSelection = SelectLocalTime
-      }
+      State
+        { stateDayCursor = makeFuzzyDayCursor $ localDay lt,
+          stateTimeOfDayCursor = makeFuzzyTimeOfDayCursor $ localTimeOfDay lt,
+          stateLocalTimeCursor = makeFuzzyLocalTimeCursor $ BothTimeAndDay lt,
+          stateSelection = SelectLocalTime
+        }
 
 picoSmosApp :: App State e Selection
 picoSmosApp =
   App
-    { appDraw = draw
-    , appChooseCursor = showFirstCursor
-    , appHandleEvent = handleEvent
-    , appStartEvent = pure
-    , appAttrMap = const $ attrMap Vty.defAttr []
+    { appDraw = draw,
+      appChooseCursor = showFirstCursor,
+      appHandleEvent = handleEvent,
+      appStartEvent = pure,
+      appAttrMap = const $ attrMap Vty.defAttr []
     }
 
-data State =
-  State
-    { stateDayCursor :: FuzzyDayCursor
-    , stateTimeOfDayCursor :: FuzzyTimeOfDayCursor
-    , stateLocalTimeCursor :: FuzzyLocalTimeCursor
-    , stateSelection :: Selection
-    }
+data State = State
+  { stateDayCursor :: FuzzyDayCursor,
+    stateTimeOfDayCursor :: FuzzyTimeOfDayCursor,
+    stateLocalTimeCursor :: FuzzyLocalTimeCursor,
+    stateSelection :: Selection
+  }
   deriving (Show, Eq)
 
 stateCurrentTC :: Lens' State TextCursor
@@ -64,11 +58,11 @@ stateCurrentTC = lens getter setter
   where
     getter :: State -> TextCursor
     getter s =
-      s &
-      case stateSelection s of
-        SelectDay -> fuzzyDayCursorTextCursor . stateDayCursor
-        SelectTimeOfDay -> fuzzyTimeOfDayCursorTextCursor . stateTimeOfDayCursor
-        SelectLocalTime -> fuzzyLocalTimeCursorTextCursor . stateLocalTimeCursor
+      s
+        & case stateSelection s of
+          SelectDay -> fuzzyDayCursorTextCursor . stateDayCursor
+          SelectTimeOfDay -> fuzzyTimeOfDayCursorTextCursor . stateTimeOfDayCursor
+          SelectLocalTime -> fuzzyLocalTimeCursorTextCursor . stateLocalTimeCursor
     setter :: State -> TextCursor -> State
     setter s tc =
       case stateSelection s of
@@ -94,30 +88,30 @@ selectNext s =
 draw :: State -> [Widget Selection]
 draw State {..} =
   [ centerLayer $
-    border $
-    padAll 1 $
-    vBox
-      [ guessCursorWidget
-          (selectIf SelectDay)
-          fuzzyDayCursorTextCursor
-          fuzzyDayCursorGuess
-          stateDayCursor
-          SelectDay
-      , str " "
-      , guessCursorWidget
-          (selectIf SelectTimeOfDay)
-          fuzzyTimeOfDayCursorTextCursor
-          fuzzyTimeOfDayCursorGuess
-          stateTimeOfDayCursor
-          SelectTimeOfDay
-      , str " "
-      , guessCursorWidget
-          (selectIf SelectLocalTime)
-          fuzzyLocalTimeCursorTextCursor
-          fuzzyLocalTimeCursorGuess
-          stateLocalTimeCursor
-          SelectLocalTime
-      ]
+      border $
+        padAll 1 $
+          vBox
+            [ guessCursorWidget
+                (selectIf SelectDay)
+                fuzzyDayCursorTextCursor
+                fuzzyDayCursorGuess
+                stateDayCursor
+                SelectDay,
+              str " ",
+              guessCursorWidget
+                (selectIf SelectTimeOfDay)
+                fuzzyTimeOfDayCursorTextCursor
+                fuzzyTimeOfDayCursorGuess
+                stateTimeOfDayCursor
+                SelectTimeOfDay,
+              str " ",
+              guessCursorWidget
+                (selectIf SelectLocalTime)
+                fuzzyLocalTimeCursorTextCursor
+                fuzzyLocalTimeCursorGuess
+                stateLocalTimeCursor
+                SelectLocalTime
+            ]
   ]
   where
     selectIf s = stateSelection == s
@@ -127,17 +121,18 @@ guessCursorWidget selected tcf gf c n =
   let tc = tcf c
    in vBox
         [ hCenter $
-          (if selected
-             then (showCursor n (Location (textCursorIndex tc, 0)))
-             else id) $
-          txtWrap $
-          case rebuildTextCursor tc of
-            "" -> " "
-            t -> t
-        , hCenter $
-          case gf c of
-            Nothing -> txt " "
-            Just d -> str $ show d
+            ( if selected
+                then showCursor n (Location (textCursorIndex tc, 0))
+                else id
+            )
+              $ txtWrap $
+                case rebuildTextCursor tc of
+                  "" -> " "
+                  t -> t,
+          hCenter $
+            case gf c of
+              Nothing -> txt " "
+              Just d -> str $ show d
         ]
 
 handleEvent :: State -> BrickEvent n e -> EventM n (Next State)

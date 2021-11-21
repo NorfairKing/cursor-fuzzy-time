@@ -2,36 +2,30 @@
 {-# LANGUAGE RecordWildCards #-}
 
 module Cursor.FuzzyTimeOfDay
-  ( FuzzyTimeOfDayCursor(..)
-  , emptyFuzzyTimeOfDayCursor
-  , makeFuzzyTimeOfDayCursor
-  , rebuildFuzzyTimeOfDayCursor
-  , fuzzyTimeOfDayCursorTextCursorL
-  , fuzzyTimeOfDayCursorGuess
-  ) where
+  ( FuzzyTimeOfDayCursor (..),
+    emptyFuzzyTimeOfDayCursor,
+    makeFuzzyTimeOfDayCursor,
+    rebuildFuzzyTimeOfDayCursor,
+    fuzzyTimeOfDayCursorTextCursorL,
+    fuzzyTimeOfDayCursorGuess,
+  )
+where
 
-import GHC.Generics (Generic)
-
+import Control.DeepSeq
+import Cursor.Text
+import Data.FuzzyTime
 import Data.Maybe
 import qualified Data.Text as T
 import Data.Time
 import Data.Validity
-
-import Control.DeepSeq
-
+import GHC.Generics (Generic)
+import Lens.Micro
 import Text.Megaparsec
 
-import Lens.Micro
-
-import Data.FuzzyTime
-
-import Cursor.Text
-
-data FuzzyTimeOfDayCursor =
-  FuzzyTimeOfDayCursor
-    { fuzzyTimeOfDayCursorTextCursor :: TextCursor
-    , fuzzyTimeOfDayCursorBaseTimeOfDay :: TimeOfDay
-    }
+data FuzzyTimeOfDayCursor = FuzzyTimeOfDayCursor
+  { fuzzyTimeOfDayCursorTextCursor :: TextCursor,
+    fuzzyTimeOfDayCursorBaseTimeOfDay :: TimeOfDay
+  }
   deriving (Show, Eq, Generic)
 
 instance Validity FuzzyTimeOfDayCursor
@@ -41,14 +35,16 @@ instance NFData FuzzyTimeOfDayCursor
 emptyFuzzyTimeOfDayCursor :: TimeOfDay -> FuzzyTimeOfDayCursor
 emptyFuzzyTimeOfDayCursor d =
   FuzzyTimeOfDayCursor
-    {fuzzyTimeOfDayCursorTextCursor = emptyTextCursor, fuzzyTimeOfDayCursorBaseTimeOfDay = d}
+    { fuzzyTimeOfDayCursorTextCursor = emptyTextCursor,
+      fuzzyTimeOfDayCursorBaseTimeOfDay = d
+    }
 
 makeFuzzyTimeOfDayCursor :: TimeOfDay -> FuzzyTimeOfDayCursor
 makeFuzzyTimeOfDayCursor d =
   FuzzyTimeOfDayCursor
     { fuzzyTimeOfDayCursorTextCursor =
-        fromJust $ makeTextCursor $ T.pack $ formatTime defaultTimeLocale "%T%Q" d
-    , fuzzyTimeOfDayCursorBaseTimeOfDay = d
+        fromJust $ makeTextCursor $ T.pack $ formatTime defaultTimeLocale "%T%Q" d,
+      fuzzyTimeOfDayCursorBaseTimeOfDay = d
     }
 
 rebuildFuzzyTimeOfDayCursor :: FuzzyTimeOfDayCursor -> TimeOfDay

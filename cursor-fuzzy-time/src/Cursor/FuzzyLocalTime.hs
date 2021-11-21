@@ -2,36 +2,30 @@
 {-# LANGUAGE RecordWildCards #-}
 
 module Cursor.FuzzyLocalTime
-  ( FuzzyLocalTimeCursor(..)
-  , emptyFuzzyLocalTimeCursor
-  , makeFuzzyLocalTimeCursor
-  , rebuildFuzzyLocalTimeCursor
-  , fuzzyLocalTimeCursorTextCursorL
-  , fuzzyLocalTimeCursorGuess
-  ) where
+  ( FuzzyLocalTimeCursor (..),
+    emptyFuzzyLocalTimeCursor,
+    makeFuzzyLocalTimeCursor,
+    rebuildFuzzyLocalTimeCursor,
+    fuzzyLocalTimeCursorTextCursorL,
+    fuzzyLocalTimeCursorGuess,
+  )
+where
 
-import GHC.Generics (Generic)
-
+import Control.DeepSeq
+import Cursor.Text
+import Data.FuzzyTime
 import Data.Maybe
 import qualified Data.Text as T
 import Data.Time
 import Data.Validity
-
-import Control.DeepSeq
-
+import GHC.Generics (Generic)
+import Lens.Micro
 import Text.Megaparsec
 
-import Lens.Micro
-
-import Data.FuzzyTime
-
-import Cursor.Text
-
-data FuzzyLocalTimeCursor =
-  FuzzyLocalTimeCursor
-    { fuzzyLocalTimeCursorTextCursor :: TextCursor
-    , fuzzyLocalTimeCursorBaseLocalTime :: LocalTime
-    }
+data FuzzyLocalTimeCursor = FuzzyLocalTimeCursor
+  { fuzzyLocalTimeCursorTextCursor :: TextCursor,
+    fuzzyLocalTimeCursorBaseLocalTime :: LocalTime
+  }
   deriving (Show, Eq, Generic)
 
 instance Validity FuzzyLocalTimeCursor
@@ -41,19 +35,21 @@ instance NFData FuzzyLocalTimeCursor
 emptyFuzzyLocalTimeCursor :: LocalTime -> FuzzyLocalTimeCursor
 emptyFuzzyLocalTimeCursor d =
   FuzzyLocalTimeCursor
-    {fuzzyLocalTimeCursorTextCursor = emptyTextCursor, fuzzyLocalTimeCursorBaseLocalTime = d}
+    { fuzzyLocalTimeCursorTextCursor = emptyTextCursor,
+      fuzzyLocalTimeCursorBaseLocalTime = d
+    }
 
 makeFuzzyLocalTimeCursor :: AmbiguousLocalTime -> FuzzyLocalTimeCursor
 makeFuzzyLocalTimeCursor alt =
   FuzzyLocalTimeCursor
     { fuzzyLocalTimeCursorTextCursor =
         fromJust $
-        makeTextCursor $
-        T.pack $
-        case alt of
-          OnlyDaySpecified d -> formatTime defaultTimeLocale "%F" d
-          BothTimeAndDay lt -> formatTime defaultTimeLocale "%F %T%Q" lt
-    , fuzzyLocalTimeCursorBaseLocalTime =
+          makeTextCursor $
+            T.pack $
+              case alt of
+                OnlyDaySpecified d -> formatTime defaultTimeLocale "%F" d
+                BothTimeAndDay lt -> formatTime defaultTimeLocale "%F %T%Q" lt,
+      fuzzyLocalTimeCursorBaseLocalTime =
         case alt of
           OnlyDaySpecified d -> LocalTime d midnight
           BothTimeAndDay lt -> lt

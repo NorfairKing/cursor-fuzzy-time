@@ -2,35 +2,34 @@
 
 module Cursor.FuzzyTimeOfDaySpec where
 
+import Cursor.FuzzyTimeOfDay
+import Cursor.FuzzyTimeOfDay.Gen ()
 import Test.Hspec
 import Test.Validity
 import Test.Validity.Optics
 
-import Cursor.FuzzyTimeOfDay
-import Cursor.FuzzyTimeOfDay.Gen ()
-
 spec :: Spec
 spec = do
-  eqSpecOnValid @FuzzyTimeOfDayCursor
+  eqSpec @FuzzyTimeOfDayCursor
   genValidSpec @FuzzyTimeOfDayCursor
   describe "emptyFuzzyTimeOfDayCursor" $ do
     it "produces valid cursors" $
-      producesValidsOnValids emptyFuzzyTimeOfDayCursor
+      producesValid emptyFuzzyTimeOfDayCursor
     it "makes cursors that makes the guessing produce nothing" $
       forAllValid $ \today ->
-        fuzzyTimeOfDayCursorGuess (emptyFuzzyTimeOfDayCursor today) `shouldBe`
-        Nothing
+        fuzzyTimeOfDayCursorGuess (emptyFuzzyTimeOfDayCursor today)
+          `shouldBe` Nothing
   describe "makeFuzzyTimeOfDayCursor" $ do
     it "produces valid cursors" $
-      producesValidsOnValids makeFuzzyTimeOfDayCursor
+      producesValid makeFuzzyTimeOfDayCursor
     it "makes cursors that makes the guessing produce the given time" $
       forAllValid $ \d ->
         fuzzyTimeOfDayCursorGuess (makeFuzzyTimeOfDayCursor d) `shouldBe` Just d
   describe "rebuildFuzzyTimeOfDayCursor" $ do
     it "produces valid time of day" $
-      producesValidsOnValids rebuildFuzzyTimeOfDayCursor
+      producesValid rebuildFuzzyTimeOfDayCursor
   describe "fuzzyTimeOfDayCursorTextCursorL" $
-    lensSpecOnValid fuzzyTimeOfDayCursorTextCursorL
+    lensSpec fuzzyTimeOfDayCursorTextCursorL
   describe "fuzzyTimeOfDayCursorGuess" $
     it "guesses a valid time of day" $
-    producesValidsOnValids fuzzyTimeOfDayCursorGuess
+      producesValid fuzzyTimeOfDayCursorGuess

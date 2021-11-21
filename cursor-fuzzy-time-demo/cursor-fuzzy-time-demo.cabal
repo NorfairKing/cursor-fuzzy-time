@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d3267a3f51a5ebd9ae39ed5ab037a38a789d245fb5d3f688e4ed728edd031f32
+-- hash: 717e2e50c5fb5ac5d1302d47a30bb0101f95bf9f8a90181c6e00afd9631c5288
 
 name:           cursor-fuzzy-time-demo
 version:        0.0.0.0
@@ -13,7 +13,7 @@ homepage:       https://github.com/NorfairKing/picosmos#readme
 bug-reports:    https://github.com/NorfairKing/picosmos/issues
 author:         Tom Sydney Kerckhove
 maintainer:     syd@cs-syd.eu
-copyright:      Copyright: (c) 2018-2020 Tom Sydney Kerckhove
+copyright:      Copyright: (c) 2018-2021 Tom Sydney Kerckhove
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple

@@ -2,14 +2,10 @@
 
 module Cursor.FuzzyDay.Gen where
 
+import Cursor.FuzzyDay
+import Cursor.Text.Gen ()
 import Data.GenValidity
 import Data.GenValidity.Time ()
-
-import Cursor.Text.Gen ()
-
-import Cursor.FuzzyDay
-
-instance GenUnchecked FuzzyDayCursor
 
 instance GenValid FuzzyDayCursor where
   genValid = genValidStructurallyWithoutExtraChecking

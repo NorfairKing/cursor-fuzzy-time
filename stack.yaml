@@ -1,21 +1,21 @@
-resolver: lts-14.7
+resolver: lts-16.12
 packages:
 - cursor-fuzzy-time
 - cursor-fuzzy-time-gen
 - cursor-fuzzy-time-demo
 extra-deps:
 - github: NorfairKing/fuzzy-time
-  commit: e838407dbfa6fb65786a8eca419abafa13bfdc54
+  commit: af42de90fd04d8506a440f439c6628c64d33b7d2
   subdirs:
   - fuzzy-time
   - fuzzy-time-gen
 - github: NorfairKing/cursor
-  commit: 8d0cbe9635c741c4fb1f76ac4b6550f4c831b0cd
+  commit: ff27e78281430c298a25a7805c9c61ca1e69f4c5
   subdirs:
   - cursor
   - cursor-gen
 - github: NorfairKing/validity
-  commit: 10c3b06dc45ce5edfc565abfba564140512efe92
+  commit: 35bc8d45b27e6c21429e4b681b16e46ccd541b3b
   subdirs:
   - genvalidity
   - genvalidity-aeson
@@ -50,8 +50,5 @@ extra-deps:
   - validity-vector
 
 nix:
-  path: [ "nixpkgs=https://github.com/NixOS/nixpkgs/archive/e6b93257b0ba070bd12810eeacbe281396c24316.tar.gz" ]
-  add-gc-roots: true
-  packages:
-  - zlib
+  shell-file: shell.nix
 
