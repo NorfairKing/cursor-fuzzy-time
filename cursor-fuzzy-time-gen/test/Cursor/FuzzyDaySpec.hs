@@ -30,4 +30,5 @@ spec = do
   describe "fuzzyDayCursorTextCursorL" $
     lensSpec fuzzyDayCursorTextCursorL
   describe "fuzzyDayCursorGuess" $
-    it "guesses a valid day" $ producesValid fuzzyDayCursorGuess
+    it "guesses a valid day" $
+      producesValid fuzzyDayCursorGuess

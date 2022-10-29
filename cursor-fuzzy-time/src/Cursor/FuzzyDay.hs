@@ -44,7 +44,9 @@ makeFuzzyDayCursor d =
   FuzzyDayCursor
     { fuzzyDayCursorTextCursor =
         fromJust $
-          makeTextCursor $ T.pack $ formatTime defaultTimeLocale "%F" d,
+          makeTextCursor $
+            T.pack $
+              formatTime defaultTimeLocale "%F" d,
       fuzzyDayCursorBaseDay = d
     }
 

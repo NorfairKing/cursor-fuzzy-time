@@ -120,15 +120,15 @@ guessCursorWidget :: Show t => Bool -> (a -> TextCursor) -> (a -> Maybe t) -> a 
 guessCursorWidget selected tcf gf c n =
   let tc = tcf c
    in vBox
-        [ hCenter $
-            ( if selected
-                then showCursor n (Location (textCursorIndex tc, 0))
-                else id
-            )
-              $ txtWrap $
-                case rebuildTextCursor tc of
-                  "" -> " "
-                  t -> t,
+        [ hCenter
+            $ ( if selected
+                  then showCursor n (Location (textCursorIndex tc, 0))
+                  else id
+              )
+            $ txtWrap
+            $ case rebuildTextCursor tc of
+              "" -> " "
+              t -> t,
           hCenter $
             case gf c of
               Nothing -> txt " "
