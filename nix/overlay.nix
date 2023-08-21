@@ -18,7 +18,6 @@ with final.haskell.lib;
             final.lib.genAttrs [
               "cursor-fuzzy-time"
               "cursor-fuzzy-time-gen"
-              "cursor-fuzzy-time-demo"
             ]
               cursorFuzzyTimePkg;
         in
