@@ -5,9 +5,11 @@ module Cursor.FuzzyDay
   ( FuzzyDayCursor (..),
     emptyFuzzyDayCursor,
     makeFuzzyDayCursor,
-    rebuildFuzzyDayCursor,
+    rebuildFuzzyDayCursorForwards,
+    rebuildFuzzyDayCursorBackwards,
     fuzzyDayCursorTextCursorL,
-    fuzzyDayCursorGuess,
+    fuzzyDayCursorGuessForwards,
+    fuzzyDayCursorGuessBackwards,
   )
 where
 
@@ -50,16 +52,25 @@ makeFuzzyDayCursor d =
       fuzzyDayCursorBaseDay = d
     }
 
-rebuildFuzzyDayCursor :: FuzzyDayCursor -> Day
-rebuildFuzzyDayCursor fdc@FuzzyDayCursor {..} =
-  fromMaybe fuzzyDayCursorBaseDay $ fuzzyDayCursorGuess fdc
+rebuildFuzzyDayCursorForwards :: FuzzyDayCursor -> Day
+rebuildFuzzyDayCursorForwards fdc@FuzzyDayCursor {..} =
+  fromMaybe fuzzyDayCursorBaseDay $ fuzzyDayCursorGuessForwards fdc
+
+rebuildFuzzyDayCursorBackwards :: FuzzyDayCursor -> Day
+rebuildFuzzyDayCursorBackwards fdc@FuzzyDayCursor {..} =
+  fromMaybe fuzzyDayCursorBaseDay $ fuzzyDayCursorGuessBackwards fdc
 
 fuzzyDayCursorTextCursorL :: Lens' FuzzyDayCursor TextCursor
 fuzzyDayCursorTextCursorL =
   lens fuzzyDayCursorTextCursor $ \fdc tc ->
     fdc {fuzzyDayCursorTextCursor = tc}
 
-fuzzyDayCursorGuess :: FuzzyDayCursor -> Maybe Day
-fuzzyDayCursorGuess FuzzyDayCursor {..} = do
+fuzzyDayCursorGuessForwards :: FuzzyDayCursor -> Maybe Day
+fuzzyDayCursorGuessForwards FuzzyDayCursor {..} = do
   fd <- parseMaybe fuzzyDayP $ rebuildTextCursor fuzzyDayCursorTextCursor
-  pure $ resolveDay fuzzyDayCursorBaseDay fd
+  resolveDayForwards fuzzyDayCursorBaseDay fd
+
+fuzzyDayCursorGuessBackwards :: FuzzyDayCursor -> Maybe Day
+fuzzyDayCursorGuessBackwards FuzzyDayCursor {..} = do
+  fd <- parseMaybe fuzzyDayP $ rebuildTextCursor fuzzyDayCursorTextCursor
+  resolveDayBackwards fuzzyDayCursorBaseDay fd

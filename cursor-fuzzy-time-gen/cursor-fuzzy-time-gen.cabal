@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4119139874dfcc7fc0f43f35f396d037c86bc8ab18ce92bcbd26b601b5356a82
+-- hash: a33aca5e06eb45598887c18496506f65c10de4782b991badebeeafe6d9ae068f
 
 name:           cursor-fuzzy-time-gen
-version:        0.1.0.0
+version:        0.2.0.0
 description:    Generators for the fuzzy time cursors
 category:       Time
 homepage:       https://github.com/NorfairKing/fuzzy-time
@@ -32,16 +32,11 @@ library
   ghc-options: -Wall
   build-depends:
       base >=4.9 && <=5
-    , containers
     , cursor-fuzzy-time
     , cursor-gen
-    , deepseq
-    , fuzzy-time
     , fuzzy-time-gen
     , genvalidity
     , genvalidity-time
-    , megaparsec
-    , time
   default-language: Haskell2010
 
 test-suite cursor-fuzzy-time-test
@@ -61,13 +56,9 @@ test-suite cursor-fuzzy-time-test
     , cursor-fuzzy-time
     , cursor-fuzzy-time-gen
     , fuzzy-time
-    , genvalidity
     , genvalidity-hspec
     , genvalidity-hspec-optics
-    , genvalidity-time
     , hspec
-    , megaparsec
-    , text
     , time
   default-language: Haskell2010
 
@@ -80,8 +71,7 @@ benchmark cursor-fuzzy-time-bench
       bench/
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
   build-depends:
-      QuickCheck
-    , base >=4.9 && <=5
+      base >=4.9 && <=5
     , criterion
     , cursor-fuzzy-time
     , cursor-fuzzy-time-gen

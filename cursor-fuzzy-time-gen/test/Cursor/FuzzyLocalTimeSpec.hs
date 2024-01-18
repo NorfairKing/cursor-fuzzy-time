@@ -16,26 +16,46 @@ spec :: Spec
 spec = do
   eqSpec @FuzzyLocalTimeCursor
   genValidSpec @FuzzyLocalTimeCursor
+
   describe "emptyFuzzyLocalTimeCursor" $ do
     it "produces valid cursors" $
       producesValid emptyFuzzyLocalTimeCursor
     it "makes cursors that makes the guessing produce nothing" $
       forAllValid $ \today ->
-        fuzzyLocalTimeCursorGuess (emptyFuzzyLocalTimeCursor today)
+        fuzzyLocalTimeCursorGuessForwards (emptyFuzzyLocalTimeCursor today)
           `shouldBe` Nothing
+    it "makes cursors that makes the guessing produce nothing" $
+      forAllValid $ \today ->
+        fuzzyLocalTimeCursorGuessBackwards (emptyFuzzyLocalTimeCursor today)
+          `shouldBe` Nothing
+
   describe "makeFuzzyLocalTimeCursor" $ do
     it "produces valid cursors" $
       producesValid makeFuzzyLocalTimeCursor
     it "makes cursors that makes the guessing produce the given time for recent days" $
       forAll (ModifiedJulianDay . fromIntegral <$> (genValid :: Gen Int16)) $ \d ->
-        fuzzyLocalTimeCursorGuess
+        fuzzyLocalTimeCursorGuessForwards
           (makeFuzzyLocalTimeCursor (OnlyDaySpecified d))
           `shouldBe` Just (OnlyDaySpecified d)
-  describe "rebuildFuzzyLocalTimeCursor" $ do
+    it "makes cursors that makes the guessing produce the given time for recent days" $
+      forAll (ModifiedJulianDay . fromIntegral <$> (genValid :: Gen Int16)) $ \d ->
+        fuzzyLocalTimeCursorGuessBackwards
+          (makeFuzzyLocalTimeCursor (OnlyDaySpecified d))
+          `shouldBe` Just (OnlyDaySpecified d)
+
+  describe "rebuildFuzzyLocalTimeCursorForwards" $ do
     it "produces valid time of day" $
-      producesValid rebuildFuzzyLocalTimeCursor
+      producesValid rebuildFuzzyLocalTimeCursorForwards
+  describe "rebuildFuzzyLocalTimeCursorBackwards" $ do
+    it "produces valid time of day" $
+      producesValid rebuildFuzzyLocalTimeCursorBackwards
+
   describe "fuzzyLocalTimeCursorTextCursorL" $
     lensSpec fuzzyLocalTimeCursorTextCursorL
-  describe "fuzzyLocalTimeCursorGuess" $
+
+  describe "fuzzyLocalTimeCursorGuessForwards" $
     it "guesses a valid time of day" $
-      producesValid fuzzyLocalTimeCursorGuess
+      producesValid fuzzyLocalTimeCursorGuessForwards
+  describe "fuzzyLocalTimeCursorGuessBackwards" $
+    it "guesses a valid time of day" $
+      producesValid fuzzyLocalTimeCursorGuessBackwards

@@ -1,5 +1,5 @@
 name: cursor-fuzzy-time
-version: '0.0.0.0'
+version: '0.1.0.0'
 category: Time
 author: Tom Sydney Kerckhove
 maintainer: syd@cs-syd.eu
@@ -8,19 +8,19 @@ license: MIT
 homepage: https://github.com/NorfairKing/fuzzy-time
 description: Cursors for the fuzzy-time parser and resolver
 
+extra-source-files:
+- CHANGELOG.md
 
 library:
   source-dirs: src/
   ghc-options: -Wall
   dependencies:
   - base >=4.9 && <=5
-  - containers
   - cursor
   - deepseq
-  - fuzzy-time
+  - fuzzy-time >=0.3
   - megaparsec
   - microlens
   - text
   - time
   - validity
-  - validity-time

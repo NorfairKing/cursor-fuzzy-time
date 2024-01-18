@@ -19,16 +19,31 @@ spec = do
     it "produces valid cursors" $ producesValid emptyFuzzyDayCursor
     it "makes cursors that makes the guessing produce nothing" $
       forAllValid $ \today ->
-        fuzzyDayCursorGuess (emptyFuzzyDayCursor today) `shouldBe` Nothing
+        fuzzyDayCursorGuessForwards (emptyFuzzyDayCursor today) `shouldBe` Nothing
+    it "makes cursors that makes the guessing produce nothing" $
+      forAllValid $ \today ->
+        fuzzyDayCursorGuessBackwards (emptyFuzzyDayCursor today) `shouldBe` Nothing
+
   describe "makeFuzzyDayCursor" $ do
     it "produces valid cursors" $ producesValid makeFuzzyDayCursor
     it "makes cursors that makes the guessing produce the given time for recent days" $
       forAll (ModifiedJulianDay . fromIntegral <$> (genValid :: Gen Int16)) $ \d ->
-        fuzzyDayCursorGuess (makeFuzzyDayCursor d) `shouldBe` Just d
-  describe "rebuildFuzzyDayCursor" $ do
-    it "produces valid days" $ producesValid rebuildFuzzyDayCursor
+        fuzzyDayCursorGuessForwards (makeFuzzyDayCursor d) `shouldBe` Just d
+    it "makes cursors that makes the guessing produce the given time for recent days" $
+      forAll (ModifiedJulianDay . fromIntegral <$> (genValid :: Gen Int16)) $ \d ->
+        fuzzyDayCursorGuessBackwards (makeFuzzyDayCursor d) `shouldBe` Just d
+
+  describe "rebuildFuzzyDayCursorForwards" $ do
+    it "produces valid days" $ producesValid rebuildFuzzyDayCursorForwards
+  describe "rebuildFuzzyDayCursorBackwards" $ do
+    it "produces valid days" $ producesValid rebuildFuzzyDayCursorBackwards
+
   describe "fuzzyDayCursorTextCursorL" $
     lensSpec fuzzyDayCursorTextCursorL
-  describe "fuzzyDayCursorGuess" $
+
+  describe "fuzzyDayCursorGuessForwards" $
     it "guesses a valid day" $
-      producesValid fuzzyDayCursorGuess
+      producesValid fuzzyDayCursorGuessForwards
+  describe "fuzzyDayCursorGuessBackwards" $
+    it "guesses a valid day" $
+      producesValid fuzzyDayCursorGuessBackwards

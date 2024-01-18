@@ -5,9 +5,11 @@ module Cursor.FuzzyTimeOfDay
   ( FuzzyTimeOfDayCursor (..),
     emptyFuzzyTimeOfDayCursor,
     makeFuzzyTimeOfDayCursor,
-    rebuildFuzzyTimeOfDayCursor,
+    rebuildFuzzyTimeOfDayCursorForwards,
+    rebuildFuzzyTimeOfDayCursorBackwards,
     fuzzyTimeOfDayCursorTextCursorL,
-    fuzzyTimeOfDayCursorGuess,
+    fuzzyTimeOfDayCursorGuessForwards,
+    fuzzyTimeOfDayCursorGuessBackwards,
   )
 where
 
@@ -47,15 +49,24 @@ makeFuzzyTimeOfDayCursor d =
       fuzzyTimeOfDayCursorBaseTimeOfDay = d
     }
 
-rebuildFuzzyTimeOfDayCursor :: FuzzyTimeOfDayCursor -> TimeOfDay
-rebuildFuzzyTimeOfDayCursor fdc@FuzzyTimeOfDayCursor {..} =
-  fromMaybe fuzzyTimeOfDayCursorBaseTimeOfDay $ fuzzyTimeOfDayCursorGuess fdc
+rebuildFuzzyTimeOfDayCursorForwards :: FuzzyTimeOfDayCursor -> TimeOfDay
+rebuildFuzzyTimeOfDayCursorForwards fdc@FuzzyTimeOfDayCursor {..} =
+  fromMaybe fuzzyTimeOfDayCursorBaseTimeOfDay $ fuzzyTimeOfDayCursorGuessForwards fdc
+
+rebuildFuzzyTimeOfDayCursorBackwards :: FuzzyTimeOfDayCursor -> TimeOfDay
+rebuildFuzzyTimeOfDayCursorBackwards fdc@FuzzyTimeOfDayCursor {..} =
+  fromMaybe fuzzyTimeOfDayCursorBaseTimeOfDay $ fuzzyTimeOfDayCursorGuessBackwards fdc
 
 fuzzyTimeOfDayCursorTextCursorL :: Lens' FuzzyTimeOfDayCursor TextCursor
 fuzzyTimeOfDayCursorTextCursorL =
   lens fuzzyTimeOfDayCursorTextCursor $ \fdc tc -> fdc {fuzzyTimeOfDayCursorTextCursor = tc}
 
-fuzzyTimeOfDayCursorGuess :: FuzzyTimeOfDayCursor -> Maybe TimeOfDay
-fuzzyTimeOfDayCursorGuess FuzzyTimeOfDayCursor {..} = do
+fuzzyTimeOfDayCursorGuessForwards :: FuzzyTimeOfDayCursor -> Maybe TimeOfDay
+fuzzyTimeOfDayCursorGuessForwards FuzzyTimeOfDayCursor {..} = do
   ftod <- parseMaybe fuzzyTimeOfDayP $ rebuildTextCursor fuzzyTimeOfDayCursorTextCursor
-  pure $ resolveTimeOfDay fuzzyTimeOfDayCursorBaseTimeOfDay ftod
+  resolveTimeOfDayForwards fuzzyTimeOfDayCursorBaseTimeOfDay ftod
+
+fuzzyTimeOfDayCursorGuessBackwards :: FuzzyTimeOfDayCursor -> Maybe TimeOfDay
+fuzzyTimeOfDayCursorGuessBackwards FuzzyTimeOfDayCursor {..} = do
+  ftod <- parseMaybe fuzzyTimeOfDayP $ rebuildTextCursor fuzzyTimeOfDayCursorTextCursor
+  resolveTimeOfDayBackwards fuzzyTimeOfDayCursorBaseTimeOfDay ftod

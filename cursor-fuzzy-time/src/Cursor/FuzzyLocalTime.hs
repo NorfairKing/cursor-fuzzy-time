@@ -5,9 +5,11 @@ module Cursor.FuzzyLocalTime
   ( FuzzyLocalTimeCursor (..),
     emptyFuzzyLocalTimeCursor,
     makeFuzzyLocalTimeCursor,
-    rebuildFuzzyLocalTimeCursor,
+    rebuildFuzzyLocalTimeCursorForwards,
+    rebuildFuzzyLocalTimeCursorBackwards,
     fuzzyLocalTimeCursorTextCursorL,
-    fuzzyLocalTimeCursorGuess,
+    fuzzyLocalTimeCursorGuessForwards,
+    fuzzyLocalTimeCursorGuessBackwards,
   )
 where
 
@@ -55,15 +57,24 @@ makeFuzzyLocalTimeCursor alt =
           BothTimeAndDay lt -> lt
     }
 
-rebuildFuzzyLocalTimeCursor :: FuzzyLocalTimeCursor -> AmbiguousLocalTime
-rebuildFuzzyLocalTimeCursor fdc@FuzzyLocalTimeCursor {..} =
-  fromMaybe (BothTimeAndDay fuzzyLocalTimeCursorBaseLocalTime) $ fuzzyLocalTimeCursorGuess fdc
+rebuildFuzzyLocalTimeCursorForwards :: FuzzyLocalTimeCursor -> AmbiguousLocalTime
+rebuildFuzzyLocalTimeCursorForwards fdc@FuzzyLocalTimeCursor {..} =
+  fromMaybe (BothTimeAndDay fuzzyLocalTimeCursorBaseLocalTime) $ fuzzyLocalTimeCursorGuessForwards fdc
+
+rebuildFuzzyLocalTimeCursorBackwards :: FuzzyLocalTimeCursor -> AmbiguousLocalTime
+rebuildFuzzyLocalTimeCursorBackwards fdc@FuzzyLocalTimeCursor {..} =
+  fromMaybe (BothTimeAndDay fuzzyLocalTimeCursorBaseLocalTime) $ fuzzyLocalTimeCursorGuessBackwards fdc
 
 fuzzyLocalTimeCursorTextCursorL :: Lens' FuzzyLocalTimeCursor TextCursor
 fuzzyLocalTimeCursorTextCursorL =
   lens fuzzyLocalTimeCursorTextCursor $ \fdc tc -> fdc {fuzzyLocalTimeCursorTextCursor = tc}
 
-fuzzyLocalTimeCursorGuess :: FuzzyLocalTimeCursor -> Maybe AmbiguousLocalTime
-fuzzyLocalTimeCursorGuess FuzzyLocalTimeCursor {..} = do
+fuzzyLocalTimeCursorGuessForwards :: FuzzyLocalTimeCursor -> Maybe AmbiguousLocalTime
+fuzzyLocalTimeCursorGuessForwards FuzzyLocalTimeCursor {..} = do
   ftod <- parseMaybe fuzzyLocalTimeP $ rebuildTextCursor fuzzyLocalTimeCursorTextCursor
-  pure $ resolveLocalTime fuzzyLocalTimeCursorBaseLocalTime ftod
+  resolveLocalTimeForwards fuzzyLocalTimeCursorBaseLocalTime ftod
+
+fuzzyLocalTimeCursorGuessBackwards :: FuzzyLocalTimeCursor -> Maybe AmbiguousLocalTime
+fuzzyLocalTimeCursorGuessBackwards FuzzyLocalTimeCursor {..} = do
+  ftod <- parseMaybe fuzzyLocalTimeP $ rebuildTextCursor fuzzyLocalTimeCursorTextCursor
+  resolveLocalTimeBackwards fuzzyLocalTimeCursorBaseLocalTime ftod

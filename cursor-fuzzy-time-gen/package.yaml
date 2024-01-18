@@ -1,5 +1,5 @@
 name: cursor-fuzzy-time-gen
-version: '0.1.0.0'
+version: '0.2.0.0'
 category: Time
 author: Tom Sydney Kerckhove
 maintainer: syd@cs-syd.eu
@@ -18,16 +18,11 @@ library:
   source-dirs: src/
   ghc-options: -Wall
   dependencies:
-  - containers
   - cursor-fuzzy-time
   - cursor-gen
-  - deepseq
-  - fuzzy-time
   - fuzzy-time-gen
   - genvalidity
   - genvalidity-time
-  - megaparsec
-  - time
 
 tests:
   cursor-fuzzy-time-test:
@@ -43,13 +38,9 @@ tests:
     - cursor-fuzzy-time
     - cursor-fuzzy-time-gen
     - fuzzy-time
-    - genvalidity
     - genvalidity-hspec
     - genvalidity-hspec-optics
-    - genvalidity-time
     - hspec
-    - megaparsec
-    - text
     - time
 
 benchmarks:
@@ -62,7 +53,6 @@ benchmarks:
     - -with-rtsopts=-N
     - -Wall
     dependencies:
-    - QuickCheck
     - cursor-fuzzy-time
     - cursor-fuzzy-time-gen
     - genvalidity-criterion
