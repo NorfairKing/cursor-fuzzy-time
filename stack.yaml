@@ -1,52 +1,14 @@
-resolver: lts-21.22
+resolver: lts-23.19
 packages:
 - cursor-fuzzy-time
 - cursor-fuzzy-time-gen
+
 extra-deps:
 - github: NorfairKing/fuzzy-time
-  commit: a0966a82eea64afaa165f42ef258ec2052ec97be
+  commit: c05c5d9ac6d7c1890ae3168efc3838814e1b538b
   subdirs:
   - fuzzy-time
   - fuzzy-time-gen
-- github: NorfairKing/cursor
-  commit: 27dab66b90e314497fbf8f8984fc394b9aa80be0
-  subdirs:
-  - cursor
-  - cursor-gen
-- github: NorfairKing/validity
-  commit: 57c4897ccfeb3de60489e0328113798f059ef140
-  subdirs:
-  - genvalidity
-  - genvalidity-aeson
-  - genvalidity-bytestring
-  - genvalidity-containers
-  - genvalidity-criterion
-  - genvalidity-hspec
-  - genvalidity-hspec-aeson
-  - genvalidity-hspec-binary
-  - genvalidity-hspec-cereal
-  - genvalidity-hspec-hashable
-  - genvalidity-hspec-optics
-  - genvalidity-path
-  - genvalidity-property
-  - genvalidity-scientific
-  - genvalidity-text
-  - genvalidity-time
-  - genvalidity-unordered-containers
-  - genvalidity-uuid
-  - genvalidity-vector
-  - validity
-  - validity-aeson
-  - validity-bytestring
-  - validity-containers
-  - validity-path
-  - validity-primitive
-  - validity-scientific
-  - validity-text
-  - validity-time
-  - validity-unordered-containers
-  - validity-uuid
-  - validity-vector
 
 system-ghc: true
 nix:
